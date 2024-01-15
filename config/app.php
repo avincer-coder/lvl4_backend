@@ -155,6 +155,17 @@ return [
     |
     */
 
+    'providers' => [
+        // ...
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+    ],
+    
+    'aliases' => [
+        // ...
+        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
+        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
+    ], 
+    
     'providers' => ServiceProvider::defaultProviders()->merge([
         /*
          * Package Service Providers...

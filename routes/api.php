@@ -25,6 +25,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('paginas', PaginaController::class);
 Route::apiResource('bitacoras', BitacoraController::class);
 Route::apiResource('enlaces', EnlaceController::class);
-Route::apiResource('people', PeopleController::class);
-Route::apiResource('rolls', RollController::class);
+// Route::apiResource('people', PeopleController::class);
+// Route::apiResource('rolls', RollController::class);
+
+
+Route::middleware('jwt.auth')->group(function(){
+    Route::apiResource('rolls', RollController::class);
+    Route::apiResource('people', PeopleController::class);
+});
 

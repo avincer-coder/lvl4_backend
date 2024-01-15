@@ -9,11 +9,21 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 class AuthController extends Controller
 {
     public function login(Request $request){
-        $credentials = $request->only('email', 'password');
-        if (!$token = JWTAuth::attempt($credentials)) {
-            return response()->json(['error' => 'Credenciales inválidas'], 401);
+        // $credentials = $request->only('email', 'password');
+        // if (!$token = JWTAuth::attempt($credentials)) {
+        //     return response()->json(['error' => 'Credenciales inválidas'], 401);
+        // }
+        // return response()->json(['token' => $token], 200);
+
+        $credentials = $request->only('usuario','password');
+        if (!$token = JWTAuth::attempt($credentials))
+        {
+            return response()->json(['error' => 'Error en la validacion']);
         }
-        return response()->json(['token' => $token], 200);
+        else
+        {
+            return response()->json(['token'=>$token]);
+        }
     } 
 }
 

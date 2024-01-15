@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BitacoraController;
 use App\Http\Controllers\EnlaceController;
 use App\Http\Controllers\PaginaController;
 use App\Http\Controllers\PeopleController;
 use App\Http\Controllers\RollController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,12 +27,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('paginas', PaginaController::class);
 Route::apiResource('bitacoras', BitacoraController::class);
 Route::apiResource('enlaces', EnlaceController::class);
-// Route::apiResource('people', PeopleController::class);
+Route::apiResource('people', PeopleController::class);
 // Route::apiResource('rolls', RollController::class);
+Route::post('registro', [UserController::class, 'create']);
+Route::get('registro', [UserController::class, 'create']);
+Route::post('login', [AuthController::class, 'login']);
 
 
 Route::middleware('jwt.auth')->group(function(){
+    // Route::apiResource('people', PeopleController::class);
     Route::apiResource('rolls', RollController::class);
-    Route::apiResource('people', PeopleController::class);
+
 });
 

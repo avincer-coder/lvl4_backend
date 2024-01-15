@@ -31,6 +31,7 @@ class UserFactory extends Factory
                 return \App\Models\Roll::factory()->create()->id;
             },
             'usuario' => $this->faker->userName,
+            'password' => $this->faker->userName,
             'habilitado' => $this->faker->randomElement(['si', 'no']),
             'fecha' => $this->faker->date,
             'email_verified_at' => now(),

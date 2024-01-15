@@ -12,16 +12,17 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 class User extends Authenticatable implements JWTSubject 
 {
     // use HasApiTokens, HasFactory, Notifiable;
-    use Notifiable;
+    use Notifiable, HasFactory;
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
+        'usuario',
         'password',
+        'people_id',
+        'rolls_id',
     ];
 
     /**

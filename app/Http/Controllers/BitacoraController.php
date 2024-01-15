@@ -7,20 +7,10 @@ use Illuminate\Http\Request;
 
 class BitacoraController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $bitacoras = Bitacora::all();
+        return response()->json(['bitacoras' => $bitacoras], 200);
     }
 
     /**
@@ -28,7 +18,20 @@ class BitacoraController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'bitacora' => 'required',
+            'users_id' => 'required|exists:users,id',
+            'fecha' => 'required',
+            'hora' => 'required',
+            'ip' => 'required',
+            'so' => 'required',
+            'navegador' => 'required',
+            'usuario' => 'required',
+        ]);
+
+        $bitacora = Bitacora::create($request->all());
+
+        return response()->json(['bitacora' => $bitacora], 201);
     }
 
     /**
@@ -36,15 +39,7 @@ class BitacoraController extends Controller
      */
     public function show(Bitacora $bitacora)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Bitacora $bitacora)
-    {
-        //
+        return response()->json(['bitacora' => $bitacora], 200);
     }
 
     /**
@@ -52,7 +47,20 @@ class BitacoraController extends Controller
      */
     public function update(Request $request, Bitacora $bitacora)
     {
-        //
+        $request->validate([
+            'bitacora' => 'required',
+            'users_id' => 'required|exists:users,id',
+            'fecha' => 'required',
+            'hora' => 'required',
+            'ip' => 'required',
+            'so' => 'required',
+            'navegador' => 'required',
+            'usuario' => 'required',
+        ]);
+
+        $bitacora->update($request->all());
+
+        return response()->json(['bitacora' => $bitacora], 200);
     }
 
     /**
@@ -60,6 +68,8 @@ class BitacoraController extends Controller
      */
     public function destroy(Bitacora $bitacora)
     {
-        //
+        $bitacora->delete();
+
+        return response()->json(null, 204);
     }
 }

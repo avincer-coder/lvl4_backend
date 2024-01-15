@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\BitacoraController;
+use App\Http\Controllers\EnlaceController;
+use App\Http\Controllers\PaginaController;
+use App\Http\Controllers\PeopleController;
+use App\Http\Controllers\RollController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +22,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::apiResource('paginas', PaginaController::class);
+Route::apiResource('bitacoras', BitacoraController::class);
+Route::apiResource('enlaces', EnlaceController::class);
+Route::apiResource('people', PeopleController::class);
+Route::apiResource('rolls', RollController::class);
+

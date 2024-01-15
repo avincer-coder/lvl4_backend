@@ -12,15 +12,8 @@ class PaginaController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $paginas = Pagina::all();
+        return response()->json(['paginas' => $paginas], 200);
     }
 
     /**
@@ -28,7 +21,20 @@ class PaginaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'usuario_creacion' => 'required',
+            'usuario_modificacion' => 'required',
+            'url' => 'required',
+            'estado' => 'required',
+            'nombre' => 'required',
+            'descripcion' => 'required',
+            'icono' => 'required',
+            'tipo' => 'required',
+        ]);
+
+        $pagina = Pagina::create($request->all());
+
+        return response()->json(['pagina' => $pagina], 201);
     }
 
     /**
@@ -36,15 +42,7 @@ class PaginaController extends Controller
      */
     public function show(Pagina $pagina)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Pagina $pagina)
-    {
-        //
+        return response()->json(['pagina' => $pagina], 200);
     }
 
     /**
@@ -52,7 +50,20 @@ class PaginaController extends Controller
      */
     public function update(Request $request, Pagina $pagina)
     {
-        //
+        $request->validate([
+            'usuario_creacion' => 'required',
+            'usuario_modificacion' => 'required',
+            'url' => 'required',
+            'estado' => 'required',
+            'nombre' => 'required',
+            'descripcion' => 'required',
+            'icono' => 'required',
+            'tipo' => 'required',
+        ]);
+
+        $pagina->update($request->all());
+
+        return response()->json(['pagina' => $pagina], 200);
     }
 
     /**
@@ -60,6 +71,8 @@ class PaginaController extends Controller
      */
     public function destroy(Pagina $pagina)
     {
-        //
+        $pagina->delete();
+
+        return response()->json(null, 204);
     }
 }

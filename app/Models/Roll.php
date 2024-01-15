@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Roll extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'rol',
+        'usuario_creacion',
+        'usuario_modificacion',
+    ];
 }

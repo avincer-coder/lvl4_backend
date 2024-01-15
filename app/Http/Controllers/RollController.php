@@ -7,59 +7,47 @@ use Illuminate\Http\Request;
 
 class RollController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $rolls = Roll::all();
+        return response()->json(['rolls' => $rolls], 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'rol' => 'required',
+            'usuario_creacion' => 'required',
+            'usuario_modificacion' => 'required',
+        ]);
+
+        $roll = Roll::create($request->all());
+
+        return response()->json(['roll' => $roll], 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Roll $roll)
     {
-        //
+        return response()->json(['roll' => $roll], 200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Roll $roll)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Roll $roll)
     {
-        //
+        $request->validate([
+            'rol' => 'required',
+            'usuario_creacion' => 'required',
+            'usuario_modificacion' => 'required',
+        ]);
+
+        $roll->update($request->all());
+
+        return response()->json(['roll' => $roll], 200);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Roll $roll)
     {
-        //
+        $roll->delete();
+
+        return response()->json(null, 204);
     }
 }

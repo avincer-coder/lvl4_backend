@@ -15,4 +15,9 @@ class People extends Model
         'primer_apellido',
         'segundo_apellido',
     ];
+
+    public function users()
+    {
+        return $this->hasMany(User::class, 'people_id');
+    }
 }

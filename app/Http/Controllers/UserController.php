@@ -34,5 +34,11 @@ class UserController extends Controller
         return response()->json(['clave'=>$user]);
     }
 
+    public function index()
+    {
+        $user = User::all();
+        return response()->json(['user' => $user], 200);
+    }
+
 
 }

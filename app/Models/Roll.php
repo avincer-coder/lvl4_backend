@@ -14,4 +14,9 @@ class Roll extends Model
         'usuario_creacion',
         'usuario_modificacion',
     ];
+
+    public function users()
+    {
+        return $this->hasMany(User::class, 'rolls_id');
+    }
 }

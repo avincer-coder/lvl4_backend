@@ -31,12 +31,13 @@ Route::apiResource('people', PeopleController::class);
 // Route::apiResource('rolls', RollController::class);
 Route::post('registro', [UserController::class, 'create']);
 Route::get('registro', [UserController::class, 'create']);
+
 Route::post('login', [AuthController::class, 'login']);
 
 
 Route::middleware('jwt.auth')->group(function(){
     // Route::apiResource('people', PeopleController::class);
     Route::apiResource('rolls', RollController::class);
-
+    Route::get('user', [UserController::class, 'index']);
 });
 

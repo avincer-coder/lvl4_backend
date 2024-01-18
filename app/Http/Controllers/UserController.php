@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -14,24 +15,39 @@ class UserController extends Controller
         return response()->json(['users'=>$user]);
     }
     
-    public function create(Request $request){
-        $request->validate([
-            'usuario'=>'required|string',
-            'password'=>'required|string',
-            'people_id'=>'required|integer',
-            'rolls_id'=>'required|integer',
-        ]);
-        $user = User::create([
-            'usuario'=>$request->usuario,
-            'password'=>Hash::make($request->password),
-            // 'password'=>$request->password,
-            'people_id'=>$request->people_id,
-            'rolls_id'=>$request->rolls_id,
-        ]);
-
-        
-        
-        return response()->json(['clave'=>$user]);
+    public function create(Request $request)
+    {
+        try {
+            $request->validate([
+                'usuario' => 'required|string',
+                'password' => 'required|string',
+                'peoples_id' => 'required|integer',
+                'rolls_id' => 'required|integer',
+                'fecha' => 'required|date',
+                'correo' => 'required|string',
+                'nombres' => 'required|string',
+                'apellidos' => 'required|string',
+            ]);
+    
+            $user = User::create([
+                'usuario' => $request->usuario,
+                'password' => Hash::make($request->password),
+                'peoples_id' => $request->peoples_id,
+                'rolls_id' => $request->rolls_id,
+                'fecha' => $request->fecha,
+                'correo' => $request->correo,
+                'nombres' => $request->nombres,
+                'apellidos' => $request->apellidos,
+            ]);
+    
+            return response()->json(['clave' => $user]);
+        } catch (QueryException $e) {
+            // Ocurrió un error en la consulta SQL
+            return response()->json(['error' => 'Error de base de datos. Detalles: ' . $e->getMessage()], 500);
+        } catch (\Exception $e) {
+            // Ocurrió un error general
+            return response()->json(['error' => 'Ha ocurrido un error. Detalles: ' . $e->getMessage()], 500);
+        }
     }
 
     public function index()

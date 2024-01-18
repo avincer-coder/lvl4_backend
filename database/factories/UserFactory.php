@@ -24,7 +24,7 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'people_id' => function () {
+            'peoples_id' => function () {
                 return \App\Models\People::factory()->create()->id;
             },
             'rolls_id' => function () {
@@ -36,6 +36,10 @@ class UserFactory extends Factory
             'fecha' => $this->faker->date,
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
+            'nombres' => $this->faker->userName,
+            'apellidos' => $this->faker->userName,
+            'correo' => $this->faker->userName,
+
         ];
     }
 

@@ -13,14 +13,9 @@ return new class extends Migration
     {
         Schema::create('paginas', function (Blueprint $table) {
             $table->id();
-            $table->string('usuario_creacion');
-            $table->string('usuario_modificacion');
             $table->string('url');
-            $table->string('estado');
             $table->string('nombre');
             $table->string('descripcion');
-            $table->string('icono');
-            $table->string('tipo');
             $table->timestamps();
         });
     }

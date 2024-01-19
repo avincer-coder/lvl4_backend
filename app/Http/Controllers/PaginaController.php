@@ -22,14 +22,9 @@ class PaginaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'usuario_creacion' => 'required',
-            'usuario_modificacion' => 'required',
             'url' => 'required',
-            'estado' => 'required',
             'nombre' => 'required',
             'descripcion' => 'required',
-            'icono' => 'required',
-            'tipo' => 'required',
         ]);
 
         $pagina = Pagina::create($request->all());
@@ -51,14 +46,9 @@ class PaginaController extends Controller
     public function update(Request $request, Pagina $pagina)
     {
         $request->validate([
-            'usuario_creacion' => 'required',
-            'usuario_modificacion' => 'required',
             'url' => 'required',
-            'estado' => 'required',
             'nombre' => 'required',
             'descripcion' => 'required',
-            'icono' => 'required',
-            'tipo' => 'required',
         ]);
 
         $pagina->update($request->all());

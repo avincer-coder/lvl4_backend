@@ -17,12 +17,11 @@ class RollController extends Controller
     {
         $request->validate([
             'rol' => 'required',
-            'estado' => 'required',
         ]);
 
         $roll = Roll::create($request->all());
 
-        return response()->json(['roll' => $roll], 201);
+        return response()->json($roll, 201);
     }
 
     public function show(Roll $roll)

@@ -17,14 +17,9 @@ class PaginaFactory extends Factory
     public function definition(): array
     {
         return [
-            'usuario_creacion' => $this->faker->userName,
-            'usuario_modificacion' => $this->faker->userName,
             'url' => $this->faker->url,
-            'estado' => $this->faker->randomElement(['activo', 'inactivo']),
             'nombre' => $this->faker->word,
             'descripcion' => $this->faker->sentence,
-            'icono' => $this->faker->word,
-            'tipo' => $this->faker->word,
         ];
     }
 }

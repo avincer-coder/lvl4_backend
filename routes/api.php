@@ -28,11 +28,10 @@ Route::apiResource('paginas', PaginaController::class);
 Route::apiResource('bitacoras', BitacoraController::class);
 Route::apiResource('enlaces', EnlaceController::class);
 Route::apiResource('people', PeopleController::class);
+Route::apiResource('user', UserController::class);
 // Route::apiResource('rolls', RollController::class);
-Route::post('registro', [UserController::class, 'create']);
-Route::get('registro', [UserController::class, 'create']);
 Route::apiResource('rolls', RollController::class);
-Route::get('user', [UserController::class, 'index']);
+// Route::get('user', [UserController::class, 'index']);
 Route::post('login', [AuthController::class, 'login']);
 
 

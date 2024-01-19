@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('peoples_id')->constrained('peoples')->nullable();
-            $table->foreignId('rolls_id')->constrained('rolls')->nullable();
+            $table->foreignId('peoples_id')->constrained('peoples')->nullable()->default(1);
+            $table->foreignId('rolls_id')->constrained('rolls')->nullable()->default(1);
             $table->string('usuario')->unique();
             $table->string('habilitado')->nullable();
             $table->string('password');
-            $table->string('nombres');
-            $table->string('apellidos');
-            $table->string('correo');
+            $table->string('nombres')->nullable();
+            $table->string('apellidos')->nullable();
+            $table->string('correo')->unique()->nullable();
             $table->date('fecha')->nullable();
 
             $table->timestamp('email_verified_at')->nullable();

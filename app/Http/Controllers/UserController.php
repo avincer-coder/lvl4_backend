@@ -15,7 +15,7 @@ class UserController extends Controller
         return response()->json(['users'=>$user]);
     }
     
-    public function create(Request $request)
+    public function store(Request $request)
     {
         // // print_r($request);
         // dd($request->all());
@@ -23,21 +23,20 @@ class UserController extends Controller
         
         try {
             $request->validate([
+                'nombres' => 'string',
+                'apellidos' => 'string',
+                'correo' => 'integer',
+                'fecha' => 'integer',
+                'habilitado' => 'string',
                 'usuario' => 'required|string',
                 'password' => 'required|string',
-                'peoples_id' => 'required|integer',
-                'rolls_id' => 'required|integer',
-                // 'fecha' => 'required|date',
-                // 'correo' => 'required|string',
-                // 'nombres' => 'required|string',
-                // 'apellidos' => 'required|string',
             ]);
     
             $user = User::create([
                 'usuario' => $request->usuario,
                 'password' => Hash::make($request->password),
-                'peoples_id' => $request->peoples_id,
-                'rolls_id' => $request->rolls_id,
+                'peoples_id' => 1,
+                'rolls_id' => 1,
                 'fecha' => $request->fecha,
                 'correo' => $request->correo,
                 'nombres' => $request->nombres,

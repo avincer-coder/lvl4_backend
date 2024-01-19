@@ -17,16 +17,20 @@ class UserController extends Controller
     
     public function create(Request $request)
     {
+        // // print_r($request);
+        // dd($request->all());
+        // return response()->json(['request'=>$request]);
+        
         try {
             $request->validate([
                 'usuario' => 'required|string',
                 'password' => 'required|string',
                 'peoples_id' => 'required|integer',
                 'rolls_id' => 'required|integer',
-                'fecha' => 'required|date',
-                'correo' => 'required|string',
-                'nombres' => 'required|string',
-                'apellidos' => 'required|string',
+                // 'fecha' => 'required|date',
+                // 'correo' => 'required|string',
+                // 'nombres' => 'required|string',
+                // 'apellidos' => 'required|string',
             ]);
     
             $user = User::create([

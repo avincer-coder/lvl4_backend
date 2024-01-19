@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('rolls', function (Blueprint $table) {
             $table->id();
             $table->string('rol');
-            $table->string('usuario_creacion');
-            $table->string('usuario_modificacion');
+            $table->boolean('estado')->default(false);
+            $table->string('bitacora')->nullable();
             $table->timestamps();
         });
     }

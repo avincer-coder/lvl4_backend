@@ -18,8 +18,8 @@ class RollFactory extends Factory
     {
         return [
             'rol' => $this->faker->word,
-            'usuario_creacion' => $this->faker->userName,
-            'usuario_modificacion' => $this->faker->userName,
+            'estado'=>$this->faker->boolean,
+            'bitacora'=>$this->faker->word,
         ];
     }
 }

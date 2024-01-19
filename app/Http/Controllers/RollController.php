@@ -10,15 +10,14 @@ class RollController extends Controller
     public function index()
     {
         $rolls = Roll::all();
-        return response()->json(['rolls' => $rolls], 200);
+        return response()->json($rolls, 200);
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'rol' => 'required',
-            'usuario_creacion' => 'required',
-            'usuario_modificacion' => 'required',
+            'estado' => 'required',
         ]);
 
         $roll = Roll::create($request->all());

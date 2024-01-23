@@ -24,20 +24,21 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::apiResource('paginas', PaginaController::class);
-Route::apiResource('bitacoras', BitacoraController::class);
-Route::apiResource('enlaces', EnlaceController::class);
-Route::apiResource('people', PeopleController::class);
-Route::apiResource('user', UserController::class);
-// Route::apiResource('rolls', RollController::class);
-Route::apiResource('rolls', RollController::class);
-// Route::get('user', [UserController::class, 'index']);
-Route::post('login', [AuthController::class, 'login']);
 
+Route::post('login', [AuthController::class, 'login']);
+Route::post('user', [UserController::class, 'store']);
 
 Route::middleware('jwt.auth')->group(function(){
-    // Route::apiResource('people', PeopleController::class);
-    // Route::apiResource('rolls', RollController::class);
-    // Route::get('user', [UserController::class, 'index']);
+    Route::apiResource('paginas', PaginaController::class);
+    Route::apiResource('bitacoras', BitacoraController::class);
+    Route::apiResource('enlaces', EnlaceController::class);
+    Route::apiResource('people', PeopleController::class);
+    Route::apiResource('rolls', RollController::class);
+
+    Route::get('user', [UserController::class, 'index']);
+    // Route::get('user/{id}', [UserController::class, 'show']);
+    Route::put('user/{user}', [UserController::class, 'update']);
+    // Route::delete('user/{id}', [UserController::class, 'destroy']);
+
 });
 

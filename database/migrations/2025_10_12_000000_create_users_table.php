@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('peoples_id')->constrained('peoples')->nullable()->default(1);
             $table->foreignId('rolls_id')->constrained('rolls')->nullable()->default(1);
             $table->string('usuario')->unique();
-            $table->string('habilitado')->nullable();
+            $table->boolean('habilitado')->default(false)->nullable();
             $table->string('password');
             $table->string('nombres')->nullable();
             $table->string('apellidos')->nullable();

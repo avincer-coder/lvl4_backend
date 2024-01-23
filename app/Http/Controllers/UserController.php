@@ -25,8 +25,8 @@ class UserController extends Controller
             $request->validate([
                 'nombres' => 'string',
                 'apellidos' => 'string',
-                'correo' => 'integer',
-                'fecha' => 'integer',
+                'correo' => 'string',
+                'fecha' => 'string',
                 'habilitado' => 'string',
                 'usuario' => 'required|string',
                 'password' => 'required|string',
@@ -60,5 +60,31 @@ class UserController extends Controller
         return response()->json(['user' => $user], 200);
     }
 
+    // public function update(Request $request, Roll $roll)
+    // {
+    //     $request->validate([
+    //         'rol' => 'required',
+    //         'usuario_creacion' => 'required',
+    //         'usuario_modificacion' => 'required',
+    //     ]);
 
+    //     $roll->update($request->all());
+
+    //     return response()->json(['roll' => $roll], 200);
+    // }
+
+
+    public function update(Request $request, User $user){
+        $request->validate([
+            'nombres' => 'string',
+            'apellidos' => 'string',
+            'correo' => 'string',
+            'fecha' => 'string',
+            'habilitado' => 'integer',
+            'usuario' => 'string',
+            'password' => 'string',
+        ]);
+        $user->update($request->all());
+        return response()->json([$user], 200);
+    }
 }

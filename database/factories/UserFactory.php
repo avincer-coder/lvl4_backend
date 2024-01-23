@@ -32,7 +32,7 @@ class UserFactory extends Factory
             },
             'usuario' => $this->faker->userName,
             'password' => $this->faker->userName,
-            'habilitado' => $this->faker->randomElement(['si', 'no']),
+            'habilitado' => $this->faker->boolean,
             'fecha' => $this->faker->date,
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),

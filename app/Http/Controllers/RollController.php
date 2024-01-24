@@ -32,9 +32,8 @@ class RollController extends Controller
     public function update(Request $request, Roll $roll)
     {
         $request->validate([
-            'rol' => 'required',
-            'usuario_creacion' => 'required',
-            'usuario_modificacion' => 'required',
+            'estado' => 'integer',
+
         ]);
 
         $roll->update($request->all());

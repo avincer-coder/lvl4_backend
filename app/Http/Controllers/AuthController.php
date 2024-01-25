@@ -25,5 +25,9 @@ class AuthController extends Controller
             return response()->json(['token'=>$token]);
         }
     } 
+    public function logout(Request $request){
+        Auth::logout();
+        return response()->json(['mensaje'=>"Session cerrada"]);
+    } 
 }
 

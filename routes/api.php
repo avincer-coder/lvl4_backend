@@ -34,6 +34,7 @@ Route::middleware('jwt.auth')->group(function(){
     Route::apiResource('enlaces', EnlaceController::class);
     Route::apiResource('people', PeopleController::class);
     Route::apiResource('rolls', RollController::class);
+    Route::post('logout', [AuthController::class, 'logout']);
 
     Route::get('user', [UserController::class, 'index']);
     // Route::get('user/{id}', [UserController::class, 'show']);
